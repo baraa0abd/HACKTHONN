@@ -1,0 +1,8 @@
+{
+  "run": 11,
+  "passed": 11,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "log": "test_bad_input_and_resource_limits (test_orbit.OrbitTests.test_bad_input_and_resource_limits) ... ok\ntest_constant_sun_charge_and_curtailment (test_orbit.OrbitTests.test_constant_sun_charge_and_curtailment) ... ok\ntest_discharge_matches_independent_energy_equation (test_orbit.OrbitTests.test_discharge_matches_independent_energy_equation) ... ok\ntest_empty_battery_unserved_bus_energy (test_orbit.OrbitTests.test_empty_battery_unserved_bus_energy) ... ok\ntest_fractional_boundaries_and_step_invariance (test_orbit.OrbitTests.test_fractional_boundaries_and_step_invariance) ... ok\ntest_model_detects_infeasible_design_and_search_repairs_it (test_orbit.OrbitTests.test_model_detects_infeasible_design_and_search_repairs_it) ... ok\ntest_no_feasible_candidate_is_reported (test_orbit.OrbitTests.test_no_feasible_candidate_is_reported) ... ok\ntest_zero_load_has_no_energy_deficit (test_orbit.OrbitTests.test_zero_load_has_no_energy_deficit) ... ok\ntest_invalid_row_is_rejected_and_reported (test_telemetry.TelemetryTests.test_invalid_row_is_rejected_and_reported) ... ok\ntest_non_monotonic_time_fails_closed (test_telemetry.TelemetryTests.test_non_monotonic_time_fails_closed) ... ok\ntest_real_units_and_trapezoidal_energy (test_telemetry.TelemetryTests.test_real_units_and_trapezoidal_energy) ... ok\n\n----------------------------------------------------------------------\nRan 11 tests in 0.886s\n\nOK\n"
+}

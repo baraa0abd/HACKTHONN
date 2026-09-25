@@ -1,0 +1,170 @@
+[
+  {
+    "attribute_name": "ISO_A3",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ADM1CD_c",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ADM2CD_c",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "NAM_0",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "NAM_1",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "NAM_2",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "year",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "n_gasflaring_locs",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ntl_quality_prop_na",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ntl_quality_prop_0_good",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ntl_quality_prop_1_poor",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ntl_quality_prop_2_gapfilled",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ntl_sum",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ntl_mean",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ntl_median",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ntl_max",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ntl_q05",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ntl_q95",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ntl_gf_5km_sum",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ntl_gf_5km_mean",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ntl_gf_5km_median",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ntl_gf_5km_max",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ntl_gf_5km_q05",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ntl_gf_5km_q95",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ntl_nogf_5km_sum",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ntl_nogf_5km_mean",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ntl_nogf_5km_median",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ntl_nogf_5km_max",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ntl_nogf_5km_q05",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ntl_nogf_5km_q95",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ntl_gf_10km_sum",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ntl_gf_10km_mean",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ntl_gf_10km_median",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ntl_gf_10km_max",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ntl_gf_10km_q05",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ntl_gf_10km_q95",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ntl_nogf_10km_sum",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ntl_nogf_10km_mean",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ntl_nogf_10km_median",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ntl_nogf_10km_max",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ntl_nogf_10km_q05",
+    "data_type": "nvarchar"
+  },
+  {
+    "attribute_name": "ntl_nogf_10km_q95",
+    "data_type": "nvarchar"
+  }
+]

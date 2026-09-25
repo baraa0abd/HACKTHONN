@@ -1,0 +1,269 @@
+{
+  "all_pass": true,
+  "corners": [
+    {
+      "corner": "S1-E0-B1",
+      "pass": true,
+      "min_soc": 0.8,
+      "net_battery_wh_per_orbit": 2.3388148148148145,
+      "unserved_wh": 0.0,
+      "checks": [
+        {
+          "id": "EPS-01",
+          "description": "No unmet load energy",
+          "pass": true,
+          "actual": 0.0,
+          "unit": "Wh",
+          "limit": 0
+        },
+        {
+          "id": "EPS-02",
+          "description": "Battery stays above mission reserve",
+          "pass": true,
+          "actual": 0.8,
+          "unit": "fraction",
+          "limit": 0.3
+        },
+        {
+          "id": "EPS-03",
+          "description": "Nonnegative ideal per-orbit energy balance",
+          "pass": true,
+          "actual": 2.3388148148148145,
+          "unit": "Wh/orbit",
+          "limit": 0
+        }
+      ]
+    },
+    {
+      "corner": "S1-E0-B0.8",
+      "pass": true,
+      "min_soc": 0.8,
+      "net_battery_wh_per_orbit": 2.3388148148148145,
+      "unserved_wh": 0.0,
+      "checks": [
+        {
+          "id": "EPS-01",
+          "description": "No unmet load energy",
+          "pass": true,
+          "actual": 0.0,
+          "unit": "Wh",
+          "limit": 0
+        },
+        {
+          "id": "EPS-02",
+          "description": "Battery stays above mission reserve",
+          "pass": true,
+          "actual": 0.8,
+          "unit": "fraction",
+          "limit": 0.3
+        },
+        {
+          "id": "EPS-03",
+          "description": "Nonnegative ideal per-orbit energy balance",
+          "pass": true,
+          "actual": 2.3388148148148145,
+          "unit": "Wh/orbit",
+          "limit": 0
+        }
+      ]
+    },
+    {
+      "corner": "S1-E5-B1",
+      "pass": true,
+      "min_soc": 0.8,
+      "net_battery_wh_per_orbit": 1.6835740740740732,
+      "unserved_wh": 0.0,
+      "checks": [
+        {
+          "id": "EPS-01",
+          "description": "No unmet load energy",
+          "pass": true,
+          "actual": 0.0,
+          "unit": "Wh",
+          "limit": 0
+        },
+        {
+          "id": "EPS-02",
+          "description": "Battery stays above mission reserve",
+          "pass": true,
+          "actual": 0.8,
+          "unit": "fraction",
+          "limit": 0.3
+        },
+        {
+          "id": "EPS-03",
+          "description": "Nonnegative ideal per-orbit energy balance",
+          "pass": true,
+          "actual": 1.6835740740740732,
+          "unit": "Wh/orbit",
+          "limit": 0
+        }
+      ]
+    },
+    {
+      "corner": "S1-E5-B0.8",
+      "pass": true,
+      "min_soc": 0.8,
+      "net_battery_wh_per_orbit": 1.6835740740740732,
+      "unserved_wh": 0.0,
+      "checks": [
+        {
+          "id": "EPS-01",
+          "description": "No unmet load energy",
+          "pass": true,
+          "actual": 0.0,
+          "unit": "Wh",
+          "limit": 0
+        },
+        {
+          "id": "EPS-02",
+          "description": "Battery stays above mission reserve",
+          "pass": true,
+          "actual": 0.8,
+          "unit": "fraction",
+          "limit": 0.3
+        },
+        {
+          "id": "EPS-03",
+          "description": "Nonnegative ideal per-orbit energy balance",
+          "pass": true,
+          "actual": 1.6835740740740732,
+          "unit": "Wh/orbit",
+          "limit": 0
+        }
+      ]
+    },
+    {
+      "corner": "S0.75-E0-B1",
+      "pass": true,
+      "min_soc": 0.8,
+      "net_battery_wh_per_orbit": 0.5388148148148146,
+      "unserved_wh": 0.0,
+      "checks": [
+        {
+          "id": "EPS-01",
+          "description": "No unmet load energy",
+          "pass": true,
+          "actual": 0.0,
+          "unit": "Wh",
+          "limit": 0
+        },
+        {
+          "id": "EPS-02",
+          "description": "Battery stays above mission reserve",
+          "pass": true,
+          "actual": 0.8,
+          "unit": "fraction",
+          "limit": 0.3
+        },
+        {
+          "id": "EPS-03",
+          "description": "Nonnegative ideal per-orbit energy balance",
+          "pass": true,
+          "actual": 0.5388148148148146,
+          "unit": "Wh/orbit",
+          "limit": 0
+        }
+      ]
+    },
+    {
+      "corner": "S0.75-E0-B0.8",
+      "pass": true,
+      "min_soc": 0.8,
+      "net_battery_wh_per_orbit": 0.5388148148148146,
+      "unserved_wh": 0.0,
+      "checks": [
+        {
+          "id": "EPS-01",
+          "description": "No unmet load energy",
+          "pass": true,
+          "actual": 0.0,
+          "unit": "Wh",
+          "limit": 0
+        },
+        {
+          "id": "EPS-02",
+          "description": "Battery stays above mission reserve",
+          "pass": true,
+          "actual": 0.8,
+          "unit": "fraction",
+          "limit": 0.3
+        },
+        {
+          "id": "EPS-03",
+          "description": "Nonnegative ideal per-orbit energy balance",
+          "pass": true,
+          "actual": 0.5388148148148146,
+          "unit": "Wh/orbit",
+          "limit": 0
+        }
+      ]
+    },
+    {
+      "corner": "S0.75-E5-B1",
+      "pass": true,
+      "min_soc": 0.8,
+      "net_battery_wh_per_orbit": 0.0335740740740742,
+      "unserved_wh": 0.0,
+      "checks": [
+        {
+          "id": "EPS-01",
+          "description": "No unmet load energy",
+          "pass": true,
+          "actual": 0.0,
+          "unit": "Wh",
+          "limit": 0
+        },
+        {
+          "id": "EPS-02",
+          "description": "Battery stays above mission reserve",
+          "pass": true,
+          "actual": 0.8,
+          "unit": "fraction",
+          "limit": 0.3
+        },
+        {
+          "id": "EPS-03",
+          "description": "Nonnegative ideal per-orbit energy balance",
+          "pass": true,
+          "actual": 0.0335740740740742,
+          "unit": "Wh/orbit",
+          "limit": 0
+        }
+      ]
+    },
+    {
+      "corner": "S0.75-E5-B0.8",
+      "pass": true,
+      "min_soc": 0.8,
+      "net_battery_wh_per_orbit": 0.0335740740740742,
+      "unserved_wh": 0.0,
+      "checks": [
+        {
+          "id": "EPS-01",
+          "description": "No unmet load energy",
+          "pass": true,
+          "actual": 0.0,
+          "unit": "Wh",
+          "limit": 0
+        },
+        {
+          "id": "EPS-02",
+          "description": "Battery stays above mission reserve",
+          "pass": true,
+          "actual": 0.8,
+          "unit": "fraction",
+          "limit": 0.3
+        },
+        {
+          "id": "EPS-03",
+          "description": "Nonnegative ideal per-orbit energy balance",
+          "pass": true,
+          "actual": 0.0335740740740742,
+          "unit": "Wh/orbit",
+          "limit": 0
+        }
+      ]
+    }
+  ]
+}

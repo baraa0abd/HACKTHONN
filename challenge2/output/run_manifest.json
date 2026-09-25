@@ -1,0 +1,14 @@
+{
+  "input_file": "mission.json",
+  "input_sha256": "efc60f9f6fd6a047994fdd2f8d4128a415639ff726ce8dd4c708db987e612a13",
+  "source_sha256": {
+    "engineering.py": "1bfa71f001f54b2428a698522400b939c9eb3767648128e572e043679c7ebb56",
+    "orbit.py": "02c37b0f9911a397ccd1b0dab4b4b7627e40a51ea8fc23d6ba8ffccb0d6df220",
+    "report.py": "9587bc5e824394cc717830cfc31fdec0010ddd5853095457713a58cbdaa97989",
+    "run.py": "1958bd84702672fc27c07854b4e179eddd8d84b139c05386ed3ebd48ed8aa9c0",
+    "tests\\test_orbit.py": "f686ada3cb2d609827f17c064863f409ce37e5f83cb899fc67be5ea39b83df00"
+  },
+  "python": "3.12.14",
+  "search_and_reporting_inputs_seconds": 0.34665149997454137,
+  "evidence_type": "analytical simulation with assumed inputs; no measured telemetry"
+}

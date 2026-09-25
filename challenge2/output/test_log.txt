@@ -1,0 +1,13 @@
+test_bad_input_and_resource_limits (test_orbit.OrbitTests.test_bad_input_and_resource_limits) ... ok
+test_constant_sun_charge_and_curtailment (test_orbit.OrbitTests.test_constant_sun_charge_and_curtailment) ... ok
+test_discharge_matches_independent_energy_equation (test_orbit.OrbitTests.test_discharge_matches_independent_energy_equation) ... ok
+test_empty_battery_unserved_bus_energy (test_orbit.OrbitTests.test_empty_battery_unserved_bus_energy) ... ok
+test_fractional_boundaries_and_step_invariance (test_orbit.OrbitTests.test_fractional_boundaries_and_step_invariance) ... ok
+test_model_detects_infeasible_design_and_search_repairs_it (test_orbit.OrbitTests.test_model_detects_infeasible_design_and_search_repairs_it) ... ok
+test_no_feasible_candidate_is_reported (test_orbit.OrbitTests.test_no_feasible_candidate_is_reported) ... ok
+test_zero_load_has_no_energy_deficit (test_orbit.OrbitTests.test_zero_load_has_no_energy_deficit) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.689s
+
+OK

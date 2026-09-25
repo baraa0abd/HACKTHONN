@@ -1,0 +1,8 @@
+{
+  "run": 9,
+  "passed": 9,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "log": "test_incomplete_time_series_fails_closed (test_nightlights.NightlightTests.test_incomplete_time_series_fails_closed) ... ok\ntest_real_analysis_math_and_ranking (test_nightlights.NightlightTests.test_real_analysis_math_and_ranking) ... ok\ntest_reject_non_iraq_duplicate_and_bad_quality (test_nightlights.NightlightTests.test_reject_non_iraq_duplicate_and_bad_quality) ... ok\ntest_duplicates_and_small_data (test_sky.SkyTests.test_duplicates_and_small_data) ... ok\ntest_qa_excluded_labels_do_not_train (test_sky.SkyTests.test_qa_excluded_labels_do_not_train) ... ok\ntest_reject_missing_bad_or_mixed_data (test_sky.SkyTests.test_reject_missing_bad_or_mixed_data) ... ok\ntest_scenario_physics (test_sky.SkyTests.test_scenario_physics) ... ok\ntest_site_cannot_cross_blocks (test_sky.SkyTests.test_site_cannot_cross_blocks) ... ok\ntest_spatial_holdouts_and_baseline (test_sky.SkyTests.test_spatial_holdouts_and_baseline) ... ok\n\n----------------------------------------------------------------------\nRan 9 tests in 0.663s\n\nOK\n"
+}

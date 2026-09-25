@@ -1,0 +1,20 @@
+[
+  {
+    "filename": "ASI Hack - AI Challenge Resources.pdf",
+    "pages": 6,
+    "sha256": "39d908303474e7cb154207ba94938c1099a26bd9bf8c742aac368744d453a90c",
+    "review": "all pages extracted and visually inspected"
+  },
+  {
+    "filename": "ASI Hack - Light Pollution Sources.pdf",
+    "pages": 3,
+    "sha256": "30e32388baec63dae869c4118e5a33998413e456c3366e3658c8a82d720908fb",
+    "review": "all pages extracted and visually inspected"
+  },
+  {
+    "filename": "ASI Hack - Space Industry Sources.pdf",
+    "pages": 3,
+    "sha256": "6a3f322d7cf3d0e4b92b20d6190b34dd0ba55a553b853bfb707eb16cfa17065d",
+    "review": "all pages extracted and visually inspected"
+  }
+]

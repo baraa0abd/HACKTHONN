@@ -1,0 +1,627 @@
+{
+  "best_config": {
+    "period_min": 95,
+    "eclipse_min": 35,
+    "solar_w": 8,
+    "base_w": 2,
+    "payload_w": 6,
+    "payload_duty": 0.19,
+    "battery_wh": 20,
+    "initial_soc": 0.8,
+    "min_soc": 0.3,
+    "charge_efficiency": 0.9,
+    "discharge_efficiency": 0.9,
+    "orbits": 16
+  },
+  "tested": [
+    {
+      "payload_duty": 0.0,
+      "all_corners_pass": true,
+      "worst_min_soc": 0.8,
+      "worst_net_wh_per_orbit": 1.8185185185185184
+    },
+    {
+      "payload_duty": 0.01,
+      "all_corners_pass": true,
+      "worst_min_soc": 0.8,
+      "worst_net_wh_per_orbit": 1.7245740740740736
+    },
+    {
+      "payload_duty": 0.02,
+      "all_corners_pass": true,
+      "worst_min_soc": 0.8,
+      "worst_net_wh_per_orbit": 1.6306296296296294
+    },
+    {
+      "payload_duty": 0.03,
+      "all_corners_pass": true,
+      "worst_min_soc": 0.8,
+      "worst_net_wh_per_orbit": 1.5366851851851853
+    },
+    {
+      "payload_duty": 0.04,
+      "all_corners_pass": true,
+      "worst_min_soc": 0.8,
+      "worst_net_wh_per_orbit": 1.4427407407407407
+    },
+    {
+      "payload_duty": 0.05,
+      "all_corners_pass": true,
+      "worst_min_soc": 0.8,
+      "worst_net_wh_per_orbit": 1.3487962962962965
+    },
+    {
+      "payload_duty": 0.06,
+      "all_corners_pass": true,
+      "worst_min_soc": 0.8,
+      "worst_net_wh_per_orbit": 1.254851851851852
+    },
+    {
+      "payload_duty": 0.07,
+      "all_corners_pass": true,
+      "worst_min_soc": 0.8,
+      "worst_net_wh_per_orbit": 1.1609074074074075
+    },
+    {
+      "payload_duty": 0.08,
+      "all_corners_pass": true,
+      "worst_min_soc": 0.8,
+      "worst_net_wh_per_orbit": 1.066962962962963
+    },
+    {
+      "payload_duty": 0.09,
+      "all_corners_pass": true,
+      "worst_min_soc": 0.8,
+      "worst_net_wh_per_orbit": 0.973018518518519
+    },
+    {
+      "payload_duty": 0.1,
+      "all_corners_pass": true,
+      "worst_min_soc": 0.8,
+      "worst_net_wh_per_orbit": 0.8790740740740741
+    },
+    {
+      "payload_duty": 0.11,
+      "all_corners_pass": true,
+      "worst_min_soc": 0.8,
+      "worst_net_wh_per_orbit": 0.7851296296296297
+    },
+    {
+      "payload_duty": 0.12,
+      "all_corners_pass": true,
+      "worst_min_soc": 0.8,
+      "worst_net_wh_per_orbit": 0.6911851851851858
+    },
+    {
+      "payload_duty": 0.13,
+      "all_corners_pass": true,
+      "worst_min_soc": 0.8,
+      "worst_net_wh_per_orbit": 0.5972407407407401
+    },
+    {
+      "payload_duty": 0.14,
+      "all_corners_pass": true,
+      "worst_min_soc": 0.8,
+      "worst_net_wh_per_orbit": 0.5032962962962966
+    },
+    {
+      "payload_duty": 0.15,
+      "all_corners_pass": true,
+      "worst_min_soc": 0.8,
+      "worst_net_wh_per_orbit": 0.4093518518518522
+    },
+    {
+      "payload_duty": 0.16,
+      "all_corners_pass": true,
+      "worst_min_soc": 0.8,
+      "worst_net_wh_per_orbit": 0.31540740740740736
+    },
+    {
+      "payload_duty": 0.17,
+      "all_corners_pass": true,
+      "worst_min_soc": 0.8,
+      "worst_net_wh_per_orbit": 0.22146296296296342
+    },
+    {
+      "payload_duty": 0.18,
+      "all_corners_pass": true,
+      "worst_min_soc": 0.8,
+      "worst_net_wh_per_orbit": 0.12751851851851903
+    },
+    {
+      "payload_duty": 0.19,
+      "all_corners_pass": true,
+      "worst_min_soc": 0.8,
+      "worst_net_wh_per_orbit": 0.0335740740740742
+    },
+    {
+      "payload_duty": 0.2,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.7396296296296427,
+      "worst_net_wh_per_orbit": -0.060370370370370185
+    },
+    {
+      "payload_duty": 0.21,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.6456851851851895,
+      "worst_net_wh_per_orbit": -0.15431481481481368
+    },
+    {
+      "payload_duty": 0.22,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.5517407407407504,
+      "worst_net_wh_per_orbit": -0.24825925925925985
+    },
+    {
+      "payload_duty": 0.23,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.45779629629629714,
+      "worst_net_wh_per_orbit": -0.34220370370370334
+    },
+    {
+      "payload_duty": 0.24,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.3638518518518567,
+      "worst_net_wh_per_orbit": -0.4361481481481482
+    },
+    {
+      "payload_duty": 0.25,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.2699074074074048,
+      "worst_net_wh_per_orbit": -0.5300925925925926
+    },
+    {
+      "payload_duty": 0.26,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.175962962962963,
+      "worst_net_wh_per_orbit": -0.6240370370370374
+    },
+    {
+      "payload_duty": 0.27,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.08201851851851359,
+      "worst_net_wh_per_orbit": -0.7179814814814816
+    },
+    {
+      "payload_duty": 0.28,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -0.8119259259259264
+    },
+    {
+      "payload_duty": 0.29,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -0.9058703703703701
+    },
+    {
+      "payload_duty": 0.3,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -0.999814814814814
+    },
+    {
+      "payload_duty": 0.31,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -1.093759259259259
+    },
+    {
+      "payload_duty": 0.32,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -1.1877037037037037
+    },
+    {
+      "payload_duty": 0.33,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -1.2816481481481483
+    },
+    {
+      "payload_duty": 0.34,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -1.3755925925925925
+    },
+    {
+      "payload_duty": 0.35,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -1.4695370370370369
+    },
+    {
+      "payload_duty": 0.36,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -1.5634814814814815
+    },
+    {
+      "payload_duty": 0.37,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -1.657425925925925
+    },
+    {
+      "payload_duty": 0.38,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -1.7513703703703707
+    },
+    {
+      "payload_duty": 0.39,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -1.845314814814814
+    },
+    {
+      "payload_duty": 0.4,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -1.9392592592592592
+    },
+    {
+      "payload_duty": 0.41,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -2.0332037037037036
+    },
+    {
+      "payload_duty": 0.42,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -2.127148148148148
+    },
+    {
+      "payload_duty": 0.43,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -2.2210925925925924
+    },
+    {
+      "payload_duty": 0.44,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -2.3150370370370377
+    },
+    {
+      "payload_duty": 0.45,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -2.4089814814814816
+    },
+    {
+      "payload_duty": 0.46,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -2.5029259259259247
+    },
+    {
+      "payload_duty": 0.47,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -2.596870370370371
+    },
+    {
+      "payload_duty": 0.48,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -2.6908148148148143
+    },
+    {
+      "payload_duty": 0.49,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -2.784759259259258
+    },
+    {
+      "payload_duty": 0.5,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -2.878703703703704
+    },
+    {
+      "payload_duty": 0.51,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -2.9726481481481493
+    },
+    {
+      "payload_duty": 0.52,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -3.0665925925925928
+    },
+    {
+      "payload_duty": 0.53,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -3.1605370370370363
+    },
+    {
+      "payload_duty": 0.54,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -3.254481481481482
+    },
+    {
+      "payload_duty": 0.55,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -3.348425925925927
+    },
+    {
+      "payload_duty": 0.56,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -3.4423703703703707
+    },
+    {
+      "payload_duty": 0.57,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -3.536314814814815
+    },
+    {
+      "payload_duty": 0.58,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -3.630259259259259
+    },
+    {
+      "payload_duty": 0.59,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -3.7242037037037035
+    },
+    {
+      "payload_duty": 0.6,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -3.8181481481481474
+    },
+    {
+      "payload_duty": 0.61,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -3.9120925925925922
+    },
+    {
+      "payload_duty": 0.62,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -4.006037037037037
+    },
+    {
+      "payload_duty": 0.63,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -4.099981481481482
+    },
+    {
+      "payload_duty": 0.64,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -4.193925925925926
+    },
+    {
+      "payload_duty": 0.65,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -4.287870370370371
+    },
+    {
+      "payload_duty": 0.66,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -4.381814814814815
+    },
+    {
+      "payload_duty": 0.67,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -4.47962962962963
+    },
+    {
+      "payload_duty": 0.68,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -4.585185185185185
+    },
+    {
+      "payload_duty": 0.69,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -4.69074074074074
+    },
+    {
+      "payload_duty": 0.7,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -4.796296296296295
+    },
+    {
+      "payload_duty": 0.71,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -4.901851851851852
+    },
+    {
+      "payload_duty": 0.72,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -5.007407407407408
+    },
+    {
+      "payload_duty": 0.73,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -5.112962962962962
+    },
+    {
+      "payload_duty": 0.74,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -5.2185185185185174
+    },
+    {
+      "payload_duty": 0.75,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -5.3240740740740735
+    },
+    {
+      "payload_duty": 0.76,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -5.4296296296296305
+    },
+    {
+      "payload_duty": 0.77,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -5.535185185185185
+    },
+    {
+      "payload_duty": 0.78,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -5.64074074074074
+    },
+    {
+      "payload_duty": 0.79,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -5.746296296296297
+    },
+    {
+      "payload_duty": 0.8,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -5.851851851851853
+    },
+    {
+      "payload_duty": 0.81,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -5.957407407407409
+    },
+    {
+      "payload_duty": 0.82,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -6.062962962962962
+    },
+    {
+      "payload_duty": 0.83,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -6.168518518518518
+    },
+    {
+      "payload_duty": 0.84,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -6.274074074074074
+    },
+    {
+      "payload_duty": 0.85,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -6.37962962962963
+    },
+    {
+      "payload_duty": 0.86,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -6.485185185185184
+    },
+    {
+      "payload_duty": 0.87,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -6.59074074074074
+    },
+    {
+      "payload_duty": 0.88,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -6.696296296296296
+    },
+    {
+      "payload_duty": 0.89,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -6.801851851851852
+    },
+    {
+      "payload_duty": 0.9,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -6.907407407407408
+    },
+    {
+      "payload_duty": 0.91,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -7.012962962962963
+    },
+    {
+      "payload_duty": 0.92,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -7.118518518518519
+    },
+    {
+      "payload_duty": 0.93,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -7.224074074074073
+    },
+    {
+      "payload_duty": 0.94,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -7.329629629629629
+    },
+    {
+      "payload_duty": 0.95,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -7.435185185185185
+    },
+    {
+      "payload_duty": 0.96,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -7.540740740740739
+    },
+    {
+      "payload_duty": 0.97,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -7.646296296296297
+    },
+    {
+      "payload_duty": 0.98,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -7.751851851851851
+    },
+    {
+      "payload_duty": 0.99,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -7.857407407407407
+    },
+    {
+      "payload_duty": 1.0,
+      "all_corners_pass": false,
+      "worst_min_soc": 0.0,
+      "worst_net_wh_per_orbit": -7.962962962962962
+    }
+  ],
+  "simulation_count": 808,
+  "objective": "maximum payload duty on 0.01 grid satisfying all specified corners",
+  "scope": "conditional engineering result; not a validated spacecraft operating limit"
+}

@@ -1,0 +1,15 @@
+{
+  "retrieved_utc": "2026-09-25T00:01:34.473249+00:00",
+  "provider": "World Bank Space2Stats",
+  "upstream": "NASA Black Marble nighttime lights aggregated to World Bank ADM2 boundaries",
+  "dataset_page": "https://datacatalog.worldbank.org/search/dataset/0066940/space2stats-monthly-annual-black-marble-nighttime-lights",
+  "resource_id": "DR0095685",
+  "query": "ISO_A3='IRQ'",
+  "data_url": "https://datacatalogapi.worldbank.org/ddhxext/v3/resources/DR0095685/data?top=5000&filter=ISO_A3%3D%27IRQ%27",
+  "metadata_url": "https://datacatalogapi.worldbank.org/ddhxext/v3/resources/DR0095685/metadata",
+  "records": 1313,
+  "files": {
+    "worldbank_iraq_annual.json": "af45e5493aae5a56114cfc7b6b3e1274046974f30e58330a0d9ad6dbd71a2500",
+    "worldbank_schema.json": "02690f80eb04933032a85570830d73bed20ecf14e8887459f0c039d35ee9cbc7"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "period_min": 95,
+  "eclipse_min": 35,
+  "solar_w": 8,
+  "base_w": 2,
+  "payload_w": 6,
+  "payload_duty": 0.65,
+  "battery_wh": 20,
+  "initial_soc": 0.8,
+  "min_soc": 0.3,
+  "charge_efficiency": 0.9,
+  "discharge_efficiency": 0.9,
+  "orbits": 16
+}

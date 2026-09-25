@@ -1,0 +1,50 @@
+{
+  "repository": "https://github.com/BIRDSOpenSource/EPS_dataset",
+  "commit": "67ad4435c5329abde65afc16e30d725cd5f2653c",
+  "retrieved_utc": "2026-09-24T23:44:57.775084+00:00",
+  "evidence": "public on-orbit telemetry published by dataset authors",
+  "files": [
+    {
+      "file": "NEPALISAT.xlsx",
+      "url": "https://raw.githubusercontent.com/BIRDSOpenSource/EPS_dataset/67ad4435c5329abde65afc16e30d725cd5f2653c/NEPALISAT.xlsx",
+      "sha256": "89ff16ba152712073537ab0bd6a8d653387bfdaf6f38aa19af9a30e2f2699d59",
+      "bytes": 745668
+    },
+    {
+      "file": "RAAVANA.xlsx",
+      "url": "https://raw.githubusercontent.com/BIRDSOpenSource/EPS_dataset/67ad4435c5329abde65afc16e30d725cd5f2653c/RAAVANA.xlsx",
+      "sha256": "439edd8a824ff4829d7d2fddd44eb7559fc553cde8726c4eb2860d9b11543035",
+      "bytes": 485809
+    },
+    {
+      "file": "TSURU.xlsx",
+      "url": "https://raw.githubusercontent.com/BIRDSOpenSource/EPS_dataset/67ad4435c5329abde65afc16e30d725cd5f2653c/TSURU.xlsx",
+      "sha256": "a92442de22185ebeb7964e82ae77a45a9cd59e23606833e8caaf5b81818e353a",
+      "bytes": 6059029
+    },
+    {
+      "file": "UGUISU.xlsx",
+      "url": "https://raw.githubusercontent.com/BIRDSOpenSource/EPS_dataset/67ad4435c5329abde65afc16e30d725cd5f2653c/UGUISU.xlsx",
+      "sha256": "4eac4d50e584ac96ba94936b6cd6fe6140b3ab862153b87408bd6911ca88c140",
+      "bytes": 737659
+    },
+    {
+      "file": "README.md",
+      "url": "https://raw.githubusercontent.com/BIRDSOpenSource/EPS_dataset/67ad4435c5329abde65afc16e30d725cd5f2653c/README.md",
+      "sha256": "ca55072542d41fca3a3b36a034c40fe3d0b7c753c9fab1a0dc9addd9da292790",
+      "bytes": 2714
+    },
+    {
+      "file": "LICENSE",
+      "url": "https://raw.githubusercontent.com/BIRDSOpenSource/EPS_dataset/67ad4435c5329abde65afc16e30d725cd5f2653c/LICENSE",
+      "sha256": "d342d79e546d651248c56880b61e02803f0473ef058d1f3c4ed75d8802ab1686",
+      "bytes": 1087
+    },
+    {
+      "file": "On-orbit electrical power system dataset of 1U CubeSat constellation.pdf",
+      "url": "https://raw.githubusercontent.com/BIRDSOpenSource/EPS_dataset/67ad4435c5329abde65afc16e30d725cd5f2653c/On-orbit%20electrical%20power%20system%20dataset%20of%201U%20CubeSat%20constellation.pdf",
+      "sha256": "84aa4ce4ebd02684e50162bd100307370221c59c5337856917a497488bfd2ef8",
+      "bytes": 1442254
+    }
+  ]
+}
