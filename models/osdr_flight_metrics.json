@@ -1,0 +1,145 @@
+{
+  "selected_model": "logreg C=0.1",
+  "features": [
+    "assay_measurement_type",
+    "assay_technology_platform",
+    "assay_technology_type",
+    "char_age",
+    "char_age_at_experiment_start",
+    "char_age_at_launch",
+    "char_amount_10_mm_cacl2",
+    "char_animal_source",
+    "char_body_mass_at_euthanasia",
+    "char_diet",
+    "char_duration",
+    "char_generation",
+    "char_genotype",
+    "char_host_organism",
+    "char_host_strain",
+    "char_launch_mission",
+    "char_material_type",
+    "char_organism",
+    "char_organism_part",
+    "char_run_number",
+    "char_seed_source",
+    "char_sex",
+    "char_strain",
+    "param_age_at_euthanasia",
+    "param_age_at_sample_harvest",
+    "param_blue_light",
+    "param_body_weight_upon_euthanasia",
+    "param_carcass_preservation_method",
+    "param_carcass_weight",
+    "param_collection_condition",
+    "param_container",
+    "param_diet",
+    "param_duration",
+    "param_enrichment_material",
+    "param_euthanasia_method",
+    "param_feeding_schedule",
+    "param_green_light",
+    "param_growth_light_color",
+    "param_growth_light_cycle",
+    "param_growth_medium",
+    "param_growth_temperature",
+    "param_growth_time",
+    "param_housing_temperature",
+    "param_light_color",
+    "param_light_cycle",
+    "param_light_intensity",
+    "param_light_source",
+    "param_light_treatment_duration",
+    "param_mean_growth_temperature",
+    "param_number_of_seeds_per_container",
+    "param_plant_pillow_shade",
+    "param_quantity_of_growth_medium",
+    "param_red_light",
+    "param_sample_collection_date",
+    "param_sample_media_information",
+    "param_sample_preservation_method",
+    "param_sample_storage_temperature",
+    "param_time_between_landing_to_euthanasia",
+    "param_treatment",
+    "param_treatment_light_color",
+    "param_treatment_light_source"
+  ],
+  "dropped_label_proxies": {
+    "param_absorbed_radiation_dose": 0.24630541871921183,
+    "param_absorbed_radiation_dose_rate": 0.1724137931034483,
+    "param_exposure_duration": 0.22660098522167488,
+    "param_ionizing_radiation": 0.22167487684729065,
+    "param_ionizing_radiation_categorized_by_source": 0.16748768472906403,
+    "param_vehicle": 0.16748768472906403
+  },
+  "cv_by_model": {
+    "logreg C=0.01": {
+      "train_auc": 0.6791042788050585,
+      "cv_auc": 0.6508227100658166,
+      "cv_auc_std": 0.08972710656119517,
+      "overfit_gap": 0.028281568739241925
+    },
+    "logreg C=0.1": {
+      "train_auc": 0.7093013591344951,
+      "cv_auc": 0.6622271609346888,
+      "cv_auc_std": 0.09108266010760518,
+      "overfit_gap": 0.047074198199806294
+    },
+    "logreg C=1.0": {
+      "train_auc": 0.757585505529495,
+      "cv_auc": 0.6635201449212536,
+      "cv_auc_std": 0.07324062952493517,
+      "overfit_gap": 0.09406536060824144
+    },
+    "hgb depth=3 l2=1.0": {
+      "train_auc": 0.7767015609698974,
+      "cv_auc": 0.6527536793405689,
+      "cv_auc_std": 0.06619448246598068,
+      "overfit_gap": 0.12394788162932846
+    },
+    "hgb depth=5 l2=1.0": {
+      "train_auc": 0.785085513879171,
+      "cv_auc": 0.6531400412894109,
+      "cv_auc_std": 0.07391522700582738,
+      "overfit_gap": 0.13194547258976008
+    },
+    "hgb depth=None l2=0.0": {
+      "train_auc": 0.7934388239021359,
+      "cv_auc": 0.6643248675304024,
+      "cv_auc_std": 0.07986781252627966,
+      "overfit_gap": 0.1291139563717335
+    }
+  },
+  "train": {
+    "auc_study_weighted": 0.7092040500885315,
+    "auc_row": 0.8277792429237667,
+    "accuracy_study_weighted": 0.6280211845217336,
+    "f1_flight": 0.7653595155505909,
+    "brier": 0.2163615025835329
+  },
+  "test": {
+    "auc_study_weighted": 0.6836308598812644,
+    "auc_row": 0.653021703609679,
+    "accuracy_study_weighted": 0.6125728673653443,
+    "f1_flight": 0.5986875315497223,
+    "brier": 0.22268094033072727,
+    "within_study_auc_mean": 0.5771320976155242,
+    "mixed_studies": 81
+  },
+  "baseline_test_auc": 0.5,
+  "shuffled_label_cv_auc": 0.5170717808441296,
+  "random_row_split_cv_auc": 0.6900513453000456,
+  "rows": {
+    "train": 14933,
+    "test": 3746
+  },
+  "studies": {
+    "train": 240,
+    "test": 91
+  },
+  "checks": {
+    "no_study_overlap": true,
+    "shuffled_labels_near_chance": true,
+    "train_test_gap_ok": true,
+    "beats_baseline_on_test": true
+  }
+}
