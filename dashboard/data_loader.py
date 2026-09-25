@@ -35,14 +35,18 @@ def challenge1():
     analysis, manifest, tests = _read_json(analysis_path), _read_json(manifest_path), _read_json(tests_path)
     backtest_path = "output/real/backtest_summary.json"
     backtest = _read_json(backtest_path)
+    last_night_path = "output/real/mosul_al_hadbaa_2026-09-24.json"
+    last_night = _read_json(last_night_path)
     if tests.get("failures") or tests.get("errors") or tests.get("passed") != tests.get("run"):
         raise ArtifactError("Challenge 1 verification is not fully passing; run dashboard/verify.py.")
     source = _source(analysis_path, manifest.get("retrieved_utc"))
     test_source = _source(tests_path)
     test_source.update({"tests_run": tests.get("run"), "tests_passed": tests.get("passed"), "log": tests.get("log")})
     return {"analysis": analysis, "manifest": manifest, "tests": tests, "backtest": backtest,
+            "last_night": last_night,
             "sources": {"analysis": source, "manifest": _source(manifest_path, manifest.get("retrieved_utc")),
-                        "tests": test_source, "backtest": _source(backtest_path)}}
+                        "tests": test_source, "backtest": _source(backtest_path),
+                        "last_night": _source(last_night_path)}}
 
 
 def dashboard_data():
