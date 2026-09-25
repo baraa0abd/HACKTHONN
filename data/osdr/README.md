@@ -29,3 +29,20 @@ python -m unittest tests.test_osdr
 The train/test gap is 0.03. Gradient boosting fit the training data better but generalised worse (gap +0.13), so it was rejected.
 
 **Limitation:** inside a study, flight and control samples usually share identical metadata. The model ranks studies well but mostly can't tell samples apart within a study. Adding assay measurements, such as OSDR processed gene-expression data, is the upgrade that would fix this.
+
+## Use it from a phone (no app build)
+```powershell
+cd dashboard
+python serve.py --host 0.0.0.0     # allow Python on *Private* networks if Windows Firewall asks
+ipconfig                           # note the laptop's IPv4 address, e.g. 192.168.1.20
+```
+On a phone on the same Wi-Fi, open `http://<laptop-ip>:8903/osdr.html`.
+
+| Endpoint | What it returns |
+|---|---|
+| `GET /api/osdr/metrics` | the real `models/*_metrics.json` and the dataset manifest |
+| `GET /api/osdr/options` | valid form values, taken from `train.csv` |
+| `POST /api/osdr/predict` | JSON of study fields in, `p_space_flight` out; unknown fields are rejected |
+| `POST /api/osdr/predict-genes` | one study's GeneLab VST counts CSV in, a probability for each sample out |
+
+**Using a Stitch design:** export the screen as HTML and save it as `dashboard/static/osdr.html`. Keep the `<script>` block, and put `data-bind="metadata_model.test.auc_study_weighted"` (any path into `/api/osdr/metrics`) on the elements that should show live values. Keep the element ids `fields`, `predict`, `result`, `prob`, `probbar`, `genes`, `vst` and `gtable`.

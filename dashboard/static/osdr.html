@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Spaceflight Signal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0B1026;--card:#151B33;--line:#2A3358;--gold:#F2B84B;--teal:#3DD9C2;--coral:#F16A5C;--text:#F5F7FF;--muted:#8B93B8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 "IBM Plex Sans",system-ui,sans-serif}
+main{max-width:720px;margin:0 auto;padding:20px 16px 48px}
+h1{font-size:22px;margin:0}h2{font-size:16px;margin:0 0 12px}
+.sub,.note,label{color:var(--muted);font-size:13px}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-top:16px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.stat{border:1px solid var(--line);border-radius:10px;padding:10px}
+.stat b{display:block;font:500 22px "IBM Plex Mono",monospace;color:var(--gold)}
+.stat span{color:var(--muted);font-size:12px}
+.num{font-family:"IBM Plex Mono",monospace}
+form{display:grid;gap:10px}
+select,input[type=file],button{width:100%;padding:11px;border-radius:10px;border:1px solid var(--line);background:#0F1530;color:var(--text);font:inherit}
+button{background:var(--gold);color:#1a1405;font-weight:600;border:0;cursor:pointer;min-height:44px}
+button:disabled{opacity:.5}
+.bar{height:12px;border-radius:6px;background:#0F1530;border:1px solid var(--line);overflow:hidden;margin:8px 0}
+.bar i{display:block;height:100%;width:0;background:var(--teal);transition:width .4s}
+.big{font:500 36px "IBM Plex Mono",monospace}
+.err{color:var(--coral)}
+table{width:100%;border-collapse:collapse;font-size:13px}td,th{padding:6px 4px;border-bottom:1px solid var(--line);text-align:left}
+td:last-child,th:last-child{text-align:right}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<main>
+  <h1>Spaceflight Signal</h1>
+  <p class="sub">Model trained on real NASA OSDR samples (<span class="num" data-bind="dataset.source_rows" data-fmt="int">--</span> in the repository). Evaluated on studies it never saw during training.</p>
+
+  <section>
+    <h2>Study-level model (metadata)</h2>
+    <div class="grid">
+      <div class="stat"><b data-bind="metadata_model.test.auc_study_weighted">--</b><span>Test AUC, unseen studies</span></div>
+      <div class="stat"><b data-bind="metadata_model.cv_by_model.__selected.cv_auc">--</b><span>Cross-validated AUC</span></div>
+      <div class="stat"><b data-bind="metadata_model.shuffled_label_cv_auc">--</b><span>Shuffled-label control (≈0.5)</span></div>
+      <div class="stat"><b data-bind="metadata_model.test.within_study_auc_mean">--</b><span>Within one study</span></div>
+    </div>
+    <p class="note"><span class="num" data-bind="metadata_model.rows.train" data-fmt="int">--</span> training rows, <span class="num" data-bind="metadata_model.rows.test" data-fmt="int">--</span> test rows. Model: <span data-bind="metadata_model.selected_model" data-fmt="text">--</span></p>
+  </section>
+
+  <section>
+    <h2>Score a study design</h2>
+    <form id="predict"><div id="fields" class="grid"></div><button>Estimate spaceflight likelihood</button></form>
+    <div id="result" hidden>
+      <div class="big" id="prob">--</div>
+      <div class="bar"><i id="probbar"></i></div>
+      <p class="note">Probability that samples with this design come from a spaceflight group. It ranks study designs; it can't confirm that a single sample flew.</p>
+      <p class="note" id="unseen" hidden></p>
+    </div>
+    <p class="err" id="perr" hidden></p>
+  </section>
+
+  <section>
+    <h2>Sample-level model (gene expression)</h2>
+    <div id="gstats" class="grid" hidden>
+      <div class="stat"><b data-bind="gene_model.test.auc_study_weighted">--</b><span>Test AUC, unseen studies</span></div>
+      <div class="stat"><b data-bind="gene_model.test.within_study_auc_mean">--</b><span>Within one study</span></div>
+      <div class="stat"><b data-bind="gene_model.within_study_shuffled_cv_auc">--</b><span>Shuffled-label control (≈0.5)</span></div>
+      <div class="stat"><b data-bind="gene_model.studies.train" data-fmt="int">--</b><span>Training studies</span></div>
+    </div>
+    <p class="note" id="gpending">The gene model hasn't been trained yet. Run <span class="num">python train_osdr_genes.py</span>.</p>
+    <form id="genes">
+      <label for="vst">GeneLab mouse VST counts CSV, one study, 4 or more samples</label>
+      <input id="vst" type="file" accept=".csv,text/csv" required>
+      <button>Score samples</button>
+    </form>
+    <p class="err" id="gerr" hidden></p>
+    <table id="gtable" hidden><thead><tr><th>Sample</th><th>p(flight)</th></tr></thead><tbody></tbody></table>
+  </section>
+</main>
+<script>
+const LABELS={char_organism:'Organism',char_material_type:'Tissue / material',assay_technology_type:'Assay technology',
+  assay_measurement_type:'Measurement',char_sex:'Sex',char_strain:'Strain',param_duration:'Duration',char_launch_mission:'Mission'};
+const $=id=>document.getElementById(id);
+const fmt=(v,f)=>v==null?'--':f==='int'?Number(v).toLocaleString():f==='text'?v:Number(v).toFixed(3);
+async function api(url,opt){const r=await fetch(url,opt);const j=await r.json();if(!r.ok)throw new Error(j.error||r.status);return j}
+
+async function loadMetrics(){
+  const m=await api('/api/osdr/metrics');
+  for(const k of ['metadata_model','gene_model'])if(m[k])m[k].cv_by_model.__selected=m[k].cv_by_model[m[k].selected_model];
+  document.querySelectorAll('[data-bind]').forEach(el=>{
+    const v=el.dataset.bind.split('.').reduce((o,k)=>o?.[k],m);el.textContent=fmt(v,el.dataset.fmt)});
+  $('gstats').hidden=!m.gene_model;$('gpending').hidden=!!m.gene_model;
+}
+async function loadForm(){
+  const opts=await api('/api/osdr/options');
+  $('fields').innerHTML=Object.entries(opts).map(([f,vals])=>`<div><label for="${f}">${LABELS[f]||f}</label>
+    <select id="${f}" name="${f}"><option value="">(not specified)</option>${vals.map(v=>`<option>${v.replace(/</g,'&lt;')}</option>`).join('')}</select></div>`).join('');
+}
+$('predict').onsubmit=async e=>{
+  e.preventDefault();$('perr').hidden=true;
+  const body=Object.fromEntries([...new FormData(e.target)].filter(([,v])=>v));
+  if(!Object.keys(body).length){$('perr').textContent='Pick at least one field.';$('perr').hidden=false;return}
+  try{const r=await api('/api/osdr/predict',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    $('prob').textContent=(r.p_space_flight*100).toFixed(1)+'%';$('probbar').style.width=(r.p_space_flight*100)+'%';
+    $('unseen').hidden=!r.unseen_values.length;$('unseen').textContent='Not seen in training: '+r.unseen_values.join(', ');
+    $('result').hidden=false}
+  catch(err){$('perr').textContent=err.message;$('perr').hidden=false}
+};
+$('genes').onsubmit=async e=>{
+  e.preventDefault();const btn=e.target.querySelector('button');$('gerr').hidden=true;$('gtable').hidden=true;btn.disabled=true;
+  try{const r=await api('/api/osdr/predict-genes',{method:'POST',headers:{'Content-Type':'text/csv'},body:$('vst').files[0]});
+    $('gtable').querySelector('tbody').innerHTML=r.samples.map(s=>`<tr><td>${s.sample_name.replace(/</g,'&lt;')}</td><td class="num">${(s.p_space_flight*100).toFixed(1)}%</td></tr>`).join('');
+    $('gtable').hidden=false}
+  catch(err){$('gerr').textContent=err.message;$('gerr').hidden=false}
+  finally{btn.disabled=false}
+};
+loadMetrics().catch(e=>document.querySelector('.sub').textContent='Could not load model metrics: '+e.message);
+loadForm().catch(e=>{$('perr').textContent=e.message;$('perr').hidden=false});
+</script>
+</body>
+</html>

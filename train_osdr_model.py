@@ -135,14 +135,22 @@ def train():
     return report
 
 
+_bundle = None
+
+
+def score(df: pd.DataFrame):
+    """p(Space Flight) for rows of OSDR metadata; unknown columns ignored, missing ones blank."""
+    global _bundle
+    _bundle = _bundle or joblib.load(MODELS / 'osdr_flight_model.joblib')
+    X = df.reindex(columns=_bundle['features'], fill_value='').fillna('').astype(str).apply(lambda s: s.str.strip().str.lower())
+    return _bundle['model'].predict_proba(X)[:, 1]
+
+
 def predict(path):
-    bundle = joblib.load(MODELS / 'osdr_flight_model.joblib')
     df = pd.read_csv(path, dtype=str, keep_default_na=False, encoding='utf-8-sig')
-    X = df.reindex(columns=bundle['features'], fill_value='').apply(lambda s: s.str.strip().str.lower())
-    df['p_space_flight'] = bundle['model'].predict_proba(X)[:, 1].round(4)
+    df['p_space_flight'] = score(df).round(4)
     out = Path(path).with_suffix('.predictions.csv'); df.to_csv(out, index=False, encoding='utf-8-sig')
     print(f'wrote {out}')
-
 
 if __name__ == '__main__':
     predict(sys.argv[2]) if sys.argv[1:2] == ['predict'] else train()
