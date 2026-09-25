@@ -2,7 +2,7 @@
 
 **A real-data nighttime-light decision tool for university astronomy teams and observing clubs.**
 
-Challenge 1 now runs on authentic World Bank Space2Stats records derived from NASA Black Marble. It validates and analyzes every Iraqi ADM2 district from 2012–2024. The separately developed [Challenge 2 package](challenge2/README.md) runs on authentic BIRDS flight telemetry.
+Challenge 1 runs on authentic World Bank Space2Stats records derived from NASA Black Marble. It validates and analyzes every Iraqi ADM2 district from 2012–2024, combines the saved light layer with live Open-Meteo conditions, and proves the recommendation against naive choices with a 365-night historical backtest.
 
 **Status: functional real-data satellite monitoring system.** The primary report contains no generated observation rows. Satellite upward-radiance screening is not a substitute for calibrated ground-level sky measurements.
 
@@ -31,13 +31,13 @@ cd dashboard
 .\run_dashboard.ps1
 ```
 
-افتح `http://127.0.0.1:8902/#challenge1`، وانتقل إلى «خطط ليلة الرصد»، ثم اضغط «احسب القرار الحي». تحتاج التوصية الحية إلى الإنترنت؛ تبقى أحدث استجابات Open-Meteo مخزنة لمدة ساعة.
+افتح `http://127.0.0.1:8903/#challenge1`، وانتقل إلى «خطط ليلة الرصد»، ثم اضغط «احسب القرار الحي». تحتاج التوصية الحية إلى الإنترنت؛ تبقى أحدث استجابات Open-Meteo مخزنة لمدة ساعة.
 
 اقرأ [تدقيق المستودع](AUDIT.md)، و[مصادر البيانات](DATA_SOURCES.md)، و[المنهج](METHODS.md)، و[دراسة حالة الموصل](CASE_STUDY.md)، و[سيناريو العرض](DEMO_SCRIPT.md).
 
 ### Decision dashboard in under 3 minutes
 
-Run `dashboard/run_dashboard.ps1`, open `http://127.0.0.1:8902/#challenge1`, and use the observation planner. Live recommendations require internet access and never fabricate missing SQM calibration.
+Run `dashboard/run_dashboard.ps1`, open `http://127.0.0.1:8903/#challenge1`, and use the observation planner. Live recommendations require internet access and never fabricate missing SQM calibration.
 
 On this Windows workspace:
 
@@ -87,5 +87,6 @@ Verified run: **1,313 real records**, **101 Iraqi districts**, **2012–2024**, 
 - Before/after measurements with a control site before claiming intervention benefits.
 
 The supplied briefs do not specify the team size, competition deadline, judging weights, mandatory model, or submission format. The engineering choices and 48-hour plan in this package are proposals, not invented competition rules.
+
 
 
