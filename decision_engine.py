@@ -65,6 +65,27 @@ def _weather(site,days):
         score=site['static']*max(0,night)
         out.append({'time':t,'score':round(score,3),'status':status(score),'conditions':vals,'reasons':[k for k,v in sorted(penalties.items(),key=lambda x:x[1],reverse=True)[:3]]})
     return out
+def _night_outlook(site,days):
+    """P(clear night) per upcoming night from the model trained on real forecast-vs-ERA5 nights (train_sky_model.py)."""
+    from datetime import date as _date, timedelta as _td
+    import pandas as pd
+    from build_sky_dataset import NIGHT_HOURS, night_features
+    import train_sky_model
+    from train_sky_model import clear_probability
+    h=_fetch('https://api.open-meteo.com/v1/forecast',{'latitude':site['lat'],'longitude':site['lon'],'timezone':'Asia/Baghdad','forecast_days':min(days+1,16),
+             'hourly':'cloud_cover,relative_humidity_2m,wind_speed_10m,precipitation'},f"n_{site['id']}_{days}")['hourly']
+    idx={t:i for i,t in enumerate(h['time'])};rows=[];dates=[]
+    for k in range(days):
+        d=datetime.now(ZoneInfo('Asia/Baghdad')).date()+_td(days=k)
+        hrs=[f"{(d if x>=19 else d+_td(days=1)).isoformat()}T{x:02d}:00" for x in NIGHT_HOURS]
+        if any(t not in idx for t in hrs):continue
+        col=lambda v:[h[v][idx[t]] for t in hrs]
+        vals=[col(v) for v in ('cloud_cover','relative_humidity_2m','wind_speed_10m','precipitation')]
+        if any(x is None for c in vals for x in c):continue
+        rows.append(night_features(d,*vals,site['static']));dates.append(d.isoformat())
+    if not rows:return []
+    p=clear_probability(pd.DataFrame(rows));go=train_sky_model._bundle['go_threshold']
+    return [{'night':d,'p_clear':round(float(x),3),'go':bool(x>=go)} for d,x in zip(dates,p)]
 def recommend(origin=(36.34,43.13),max_travel_km=100,days=7,mode='naked_eye'):
     sites=[]
     for raw in _site_layer():
@@ -72,8 +93,11 @@ def recommend(origin=(36.34,43.13),max_travel_km=100,days=7,mode='naked_eye'):
         if site['distance_km']>max_travel_km:continue
         hours=_weather(site,days)
         if not hours:continue
-        best=max(hours,key=lambda x:x['score']);sites.append({**site,'best':best,'sqm_status':'غير متاح: يحتاج معايرة SQM أرضية','hours':hours})
+        best=max(hours,key=lambda x:x['score'])
+        try:nights=_night_outlook(site,days)
+        except Exception as exc:nights=[];print('clear-sky model unavailable:',exc)
+        sites.append({**site,'best':best,'nights':nights,'sqm_status':'غير متاح: يحتاج معايرة SQM أرضية','hours':hours})
     sites.sort(key=lambda x:x['best']['score'],reverse=True)
     base=next((x for x in sites if x['id']=='mosul'),None)
     for x in sites:x['decision_gain_vs_origin']=round(x['best']['score']-(base['best']['score'] if base else 0),3)
-    return {'generated_utc':datetime.now(timezone.utc).isoformat(),'input':{'origin':origin,'max_travel_km':max_travel_km,'days':days,'mode':mode},'sites':sites[:5],'source':'Open-Meteo live forecast + latest Ninewa Black Marble ADM2 radiance','limitations':['لا توجد معايرة SQM عراقية بعد','الإشعاع مجمع على مستوى القضاء','السلامة والوصول غير مقيمين']}
+    return {'generated_utc':datetime.now(timezone.utc).isoformat(),'input':{'origin':origin,'max_travel_km':max_travel_km,'days':days,'mode':mode},'sites':sites[:5],'source':'Open-Meteo live forecast + latest Ninewa Black Marble ADM2 radiance + clear-night model trained on 4,805 real forecast-vs-ERA5 nights','limitations':['لا توجد معايرة SQM عراقية بعد','الإشعاع مجمع على مستوى القضاء','السلامة والوصول غير مقيمين']}

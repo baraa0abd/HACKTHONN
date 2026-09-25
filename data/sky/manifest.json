@@ -1,0 +1,36 @@
+{
+  "generated_utc": "2026-09-25T13:50:55.257806+00:00",
+  "period": [
+    "2024-02-01",
+    "2026-09-18"
+  ],
+  "sources": {
+    "features": "Open-Meteo Previous Runs API, *_previous_day1 (forecast issued ~24 h ahead)",
+    "truth": "Open-Meteo Historical Weather API (ERA5 reanalysis) cloud_cover",
+    "independent_check": "NASA POWER daily CLOUD_AMT (CERES SYN1deg satellite)"
+  },
+  "night_hours_local": [
+    19,
+    20,
+    21,
+    22,
+    23,
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "clear_definition": ">= 6 of 10 night hours with ERA5 cloud < 25%",
+  "rows": 4805,
+  "clear_rate": 0.7234,
+  "skipped_nights_missing_data": {
+    "mosul": 0,
+    "bashiqa": 0,
+    "alqosh": 0,
+    "hammam": 0,
+    "hatra": 0
+  },
+  "era5_vs_nasa_satellite_cloud_correlation": 0.7045,
+  "sha256": "751fd9ab6f054da9742924765c4afee2068568f9d43ff9465f60936c717d7f66"
+}

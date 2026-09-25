@@ -46,3 +46,16 @@ class OsdrApiTests(unittest.TestCase):
  def test_predict_returns_probability_and_flags_unseen(self):
   r = self.api.predict({'char_organism': 'mus musculus', 'char_material_type': 'not-a-real-tissue'})
   self.assertTrue(0 < r['p_space_flight'] < 1); self.assertEqual(r['unseen_values'], ['char_material_type'])
+
+class SkyModelTests(unittest.TestCase):
+ def test_night_features_are_shared_and_bounded(self):
+  from datetime import date
+  from build_sky_dataset import night_features
+  f = night_features(date(2025,1,15), [0]*5+[100]*5, [50]*10, [10]*9+[40], [0]*10, 0.5)
+  self.assertEqual((f['fc_cloud_mean'], f['fc_clear_hours'], f['fc_wind_max']), (50, 5, 40))
+ @unittest.skipUnless((Path(__file__).resolve().parent.parent/'models'/'sky_clear_metrics.json').exists(), 'train first')
+ def test_sky_model_split_is_temporal_and_calibrated(self):
+  m = json.loads((Path(__file__).resolve().parent.parent/'models'/'sky_clear_metrics.json').read_text())
+  self.assertLess(m['split']['train'][1], m['split']['test'][0])
+  hi = [b for b in m['test_reliability'] if b['predicted'].startswith('0.75')][0]
+  self.assertGreater(hi['actual_clear_rate'], 0.9)
