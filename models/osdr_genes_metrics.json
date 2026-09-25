@@ -1,0 +1,213 @@
+{
+  "selected_model": "k=50 C=0.001",
+  "cv_by_model": {
+    "k=50 C=0.001": {
+      "train_auc": 0.8314794168389158,
+      "cv_auc": 0.736024888203758,
+      "cv_auc_std": 0.07456474575176719,
+      "overfit_gap": 0.0954545286351578
+    },
+    "k=50 C=0.01": {
+      "train_auc": 0.865833845436821,
+      "cv_auc": 0.7228401591971066,
+      "cv_auc_std": 0.08284445569246796,
+      "overfit_gap": 0.1429936862397143
+    },
+    "k=50 C=0.1": {
+      "train_auc": 0.8780764177170097,
+      "cv_auc": 0.7033713278006314,
+      "cv_auc_std": 0.07984741058496944,
+      "overfit_gap": 0.17470508991637834
+    },
+    "k=300 C=0.001": {
+      "train_auc": 0.9082696956599928,
+      "cv_auc": 0.7430778610193146,
+      "cv_auc_std": 0.06012183477991747,
+      "overfit_gap": 0.16519183464067821
+    },
+    "k=300 C=0.01": {
+      "train_auc": 0.9621486583124478,
+      "cv_auc": 0.7571523105916758,
+      "cv_auc_std": 0.05394496825554107,
+      "overfit_gap": 0.20499634772077202
+    },
+    "k=300 C=0.1": {
+      "train_auc": 0.9851148965424577,
+      "cv_auc": 0.741648778279543,
+      "cv_auc_std": 0.06381384633956444,
+      "overfit_gap": 0.24346611826291464
+    },
+    "k=1500 C=0.001": {
+      "train_auc": 0.9744869310087857,
+      "cv_auc": 0.7514712201450153,
+      "cv_auc_std": 0.04642768341853262,
+      "overfit_gap": 0.22301571086377037
+    },
+    "k=1500 C=0.01": {
+      "train_auc": 0.9975357751192689,
+      "cv_auc": 0.7619493834959314,
+      "cv_auc_std": 0.027770085269542333,
+      "overfit_gap": 0.2355863916233375
+    },
+    "k=1500 C=0.1": {
+      "train_auc": 0.9999964287107689,
+      "cv_auc": 0.75002171416309,
+      "cv_auc_std": 0.03150423790707053,
+      "overfit_gap": 0.24997471454767883
+    }
+  },
+  "train": {
+    "auc_study_weighted": 0.8152357661903842,
+    "auc_row": 0.7987785575212563,
+    "accuracy_study_weighted": 0.724470813077605,
+    "f1_flight": 0.6219239373601789,
+    "brier": 0.1786867248018662,
+    "within_study_auc_mean": 0.821405442343606
+  },
+  "test": {
+    "auc_study_weighted": 0.7532869593907967,
+    "auc_row": 0.7431512988842315,
+    "accuracy_study_weighted": 0.6822834527073066,
+    "f1_flight": 0.5703125,
+    "brier": 0.19858033822096188,
+    "within_study_auc_mean": 0.7448165954018988,
+    "mixed_studies": 25
+  },
+  "within_study_shuffled_cv_auc": 0.47009177280783393,
+  "rows": {
+    "train": 1244,
+    "test": 716
+  },
+  "studies": {
+    "train": 46,
+    "test": 25
+  },
+  "top_genes": [
+    {
+      "ensembl": "ENSMUSG00000055866",
+      "symbol": "Per2",
+      "coef": -0.08404476940631866,
+      "direction": "down in flight"
+    },
+    {
+      "ensembl": "ENSMUSG00000023067",
+      "symbol": "Cdkn1a",
+      "coef": 0.07788852602243423,
+      "direction": "up in flight"
+    },
+    {
+      "ensembl": "ENSMUSG00000038550",
+      "symbol": "Ciart",
+      "coef": -0.07160797715187073,
+      "direction": "down in flight"
+    },
+    {
+      "ensembl": "ENSMUSG00000048163",
+      "symbol": "Selplg",
+      "coef": -0.07050592452287674,
+      "direction": "down in flight"
+    },
+    {
+      "ensembl": "ENSMUSG00000026077",
+      "symbol": "Npas2",
+      "coef": 0.06518211215734482,
+      "direction": "up in flight"
+    },
+    {
+      "ensembl": "ENSMUSG00000059824",
+      "symbol": "Dbp",
+      "coef": -0.05921999737620354,
+      "direction": "down in flight"
+    },
+    {
+      "ensembl": "ENSMUSG00000021187",
+      "symbol": "Tc2n",
+      "coef": 0.05702841281890869,
+      "direction": "up in flight"
+    },
+    {
+      "ensembl": "ENSMUSG00000031980",
+      "symbol": "Agt",
+      "coef": 0.05375788360834122,
+      "direction": "up in flight"
+    },
+    {
+      "ensembl": "ENSMUSG00000121069",
+      "symbol": "Gm56730",
+      "coef": 0.053469084203243256,
+      "direction": "up in flight"
+    },
+    {
+      "ensembl": "ENSMUSG00000038244",
+      "symbol": "Mical2",
+      "coef": 0.05277712270617485,
+      "direction": "up in flight"
+    },
+    {
+      "ensembl": "ENSMUSG00000028957",
+      "symbol": "Per3",
+      "coef": -0.051992692053318024,
+      "direction": "down in flight"
+    },
+    {
+      "ensembl": "ENSMUSG00000041773",
+      "symbol": "Enc1",
+      "coef": 0.051327258348464966,
+      "direction": "up in flight"
+    },
+    {
+      "ensembl": "ENSMUSG00000086320",
+      "symbol": "Gm12840",
+      "coef": 0.04924215003848076,
+      "direction": "up in flight"
+    },
+    {
+      "ensembl": "ENSMUSG00000063415",
+      "symbol": "Cyp26b1",
+      "coef": 0.04731251299381256,
+      "direction": "up in flight"
+    },
+    {
+      "ensembl": "ENSMUSG00000028150",
+      "symbol": "Rorc",
+      "coef": -0.0462338924407959,
+      "direction": "down in flight"
+    },
+    {
+      "ensembl": "ENSMUSG00000032349",
+      "symbol": "Elovl5",
+      "coef": 0.04604633152484894,
+      "direction": "up in flight"
+    },
+    {
+      "ensembl": "ENSMUSG00000031016",
+      "symbol": "Wee1",
+      "coef": -0.04554661363363266,
+      "direction": "down in flight"
+    },
+    {
+      "ensembl": "ENSMUSG00000028212",
+      "symbol": "Ccne2",
+      "coef": -0.044935088604688644,
+      "direction": "down in flight"
+    },
+    {
+      "ensembl": "ENSMUSG00000021775",
+      "symbol": "Nr1d2",
+      "coef": -0.04413271322846413,
+      "direction": "down in flight"
+    },
+    {
+      "ensembl": "ENSMUSG00000004098",
+      "symbol": "Col5a3",
+      "coef": 0.04327555000782013,
+      "direction": "up in flight"
+    }
+  ],
+  "checks": {
+    "no_study_overlap": true,
+    "within_study_shuffle_near_chance": true,
+    "train_test_gap_ok": true,
+    "beats_chance_within_study_on_test": true
+  }
+}

@@ -25,6 +25,7 @@ from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder
 ROOT = Path(__file__).resolve().parent
 DATA, MODELS = ROOT / 'data' / 'osdr', ROOT / 'models'
 IDS, SEED = ['accession', 'assay_name', 'sample_name'], 42
+MAX_GAP = 0.15  # models whose train AUC beats grouped-CV AUC by more are treated as overfit
 PROXY_RATE = 0.10  # drop a feature if it perfectly splits flight/control inside >=10% of mixed studies
 
 
@@ -34,7 +35,9 @@ def load(name):
 
 
 def study_weights(groups):
-    s = pd.Series(groups); return (1 / s.map(s.value_counts())).to_numpy()
+    """Each study weighs the same; scaled to mean 1 so a model's C means what it says."""
+    s = pd.Series(groups); w = (1 / s.map(s.value_counts())).to_numpy()
+    return w * len(w) / w.sum()
 
 
 def proxy_audit(X, y, groups):
@@ -62,6 +65,13 @@ def candidates(n_feats):
                                                       learning_rate=0.05, max_iter=400, early_stopping=True,
                                                       validation_fraction=0.15, random_state=SEED))
     return out
+
+
+def select(results):
+    """Drop overfit candidates, then take the smallest gap within 0.01 of the best CV AUC (1-SE style)."""
+    ok = {k: r for k, r in results.items() if r['overfit_gap'] <= MAX_GAP} or results
+    top = max(r['cv_auc'] for r in ok.values())
+    return min((k for k, r in ok.items() if r['cv_auc'] >= top - 0.01), key=lambda k: ok[k]['overfit_gap'])
 
 
 def fit(model, X, y, w):
@@ -102,8 +112,7 @@ def train():
         tr, va, sd = cv_scores(make, Xtr, ytr, gtr, cv)
         results[name] = {'train_auc': tr, 'cv_auc': va, 'cv_auc_std': sd, 'overfit_gap': tr - va}
         print(f'{name:24s} train {tr:.3f}  cv {va:.3f}±{sd:.3f}  gap {tr - va:+.3f}')
-    top = max(r['cv_auc'] for r in results.values())  # 1-SE-style rule: within 0.01 of best CV, take the smallest gap
-    best = min((k for k, r in results.items() if r['cv_auc'] >= top - 0.01), key=lambda k: results[k]['overfit_gap'])
+    best = select(results)
 
     make = candidates(len(feats))[best]
     shuffled = np.random.default_rng(SEED).permutation(ytr)

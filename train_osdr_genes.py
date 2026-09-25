@@ -17,7 +17,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import roc_auc_score
 from sklearn.model_selection import StratifiedGroupKFold
 from sklearn.pipeline import make_pipeline
-from train_osdr_model import MODELS, SEED, cv_scores, fit, metrics, study_weights
+from train_osdr_model import MODELS, SEED, cv_scores, fit, metrics, select, study_weights
 
 GENES = Path(__file__).resolve().parent / 'data' / 'osdr_genes'
 
@@ -36,6 +36,19 @@ def candidates():
 def within_study_auc(y, p, g):
     s = [roc_auc_score(y[g == a], p[g == a]) for a in sorted(set(g)) if len(set(y[g == a])) == 2]
     return float(np.mean(s)), len(s)
+
+
+def calibrated(bundle, X):
+    """Platt-scaled p(flight): the L2 model ranks well but shrinks probabilities toward the prior."""
+    return bundle['calibrator'].predict_proba(bundle['model'].decision_function(X).reshape(-1, 1))[:, 1]
+
+
+def fit_calibrator(make, X, y, groups, cv):
+    """Fit Platt scaling on out-of-fold scores, so no study is scored by a model that saw it."""
+    oof = np.zeros(len(y))
+    for tr, va in cv.split(X, y, groups):
+        oof[va] = fit(make(), X.iloc[tr], y[tr], study_weights(groups[tr])).decision_function(X.iloc[va])
+    return LogisticRegression().fit(oof.reshape(-1, 1), y, sample_weight=study_weights(groups))
 
 
 def zscore_within(df):
@@ -64,8 +77,7 @@ def train():
         tr, va, sd = cv_scores(make, Xtr, ytr, gtr, cv)
         results[name] = {'train_auc': tr, 'cv_auc': va, 'cv_auc_std': sd, 'overfit_gap': tr - va}
         print(f'{name:14s} train {tr:.3f}  cv {va:.3f}±{sd:.3f}  gap {tr - va:+.3f}', flush=True)
-    top = max(r['cv_auc'] for r in results.values())
-    best = min((k for k, r in results.items() if r['cv_auc'] >= top - 0.01), key=lambda k: results[k]['overfit_gap'])
+    best = select(results)
     make = candidates()[best]
 
     rng = np.random.default_rng(SEED)
@@ -74,7 +86,8 @@ def train():
     null_auc = cv_scores(make, Xtr, y_null, gtr, cv)[1]
 
     model = fit(make(), Xtr, ytr, study_weights(gtr))
-    p_tr, p_te = model.predict_proba(Xtr)[:, 1], model.predict_proba(Xte)[:, 1]
+    bundle = {'model': model, 'calibrator': fit_calibrator(make, Xtr, ytr, gtr, cv), 'genes': list(Xtr.columns)}
+    p_tr, p_te = calibrated(bundle, Xtr), calibrated(bundle, Xte)
     sel, lr = model.steps[0][1], model.steps[-1][1]
     coef = pd.Series(lr.coef_[0], index=Xtr.columns[sel.get_support()])
     top_genes = coef.reindex(coef.abs().nlargest(20).index)
@@ -94,7 +107,7 @@ def train():
         'beats_chance_within_study_on_test': report['test']['within_study_auc_mean'] > 0.6,
     }
     MODELS.mkdir(exist_ok=True)
-    joblib.dump({'model': model, 'genes': list(Xtr.columns)}, MODELS / 'osdr_genes_model.joblib')
+    joblib.dump(bundle, MODELS / 'osdr_genes_model.joblib')
     (MODELS / 'osdr_genes_metrics.json').write_text(json.dumps(report, indent=2, default=float), encoding='utf-8')
     print(json.dumps({k: report[k] for k in ('selected_model', 'train', 'test', 'within_study_shuffled_cv_auc', 'checks')},
                      indent=2, default=float))
@@ -110,7 +123,7 @@ def score_vst(df: pd.DataFrame) -> pd.DataFrame:
     coverage = df.index.isin(bundle['genes']).sum() / len(bundle['genes'])
     if coverage < 0.5: raise ValueError(f'only {coverage:.0%} of model genes found; expected a mouse GeneLab VST counts file')
     X = zscore_within(df).reindex(bundle['genes']).fillna(0).T
-    out = pd.DataFrame({'sample_name': X.index, 'p_space_flight': bundle['model'].predict_proba(X)[:, 1].round(4)})
+    out = pd.DataFrame({'sample_name': X.index, 'p_space_flight': calibrated(bundle, X).round(4)})
     out.attrs['gene_coverage'] = float(coverage)
     return out
 
