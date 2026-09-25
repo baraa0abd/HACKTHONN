@@ -9,6 +9,7 @@ from urllib.parse import parse_qs, urlparse
 from data_loader import dashboard_data
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from decision_engine import recommend
+from field_validation import append_observation, metrics
 
 HERE = Path(__file__).resolve().parent
 
@@ -26,12 +27,27 @@ class Handler(SimpleHTTPRequestHandler):
             except Exception as exc:
                 payload=json.dumps({"error":f"تعذر جلب التوقعات الحية: {exc}"},ensure_ascii=False).encode("utf-8");self.send_response(502)
             self.send_header("Content-Type","application/json; charset=utf-8");self.send_header("Cache-Control","no-store");self.send_header("Content-Length",str(len(payload)));self.end_headers();self.wfile.write(payload);return
+        if parsed.path == "/api/validation":
+            payload=json.dumps(metrics(),ensure_ascii=False).encode("utf-8");self.send_response(200)
+            self.send_header("Content-Type","application/json; charset=utf-8");self.send_header("Cache-Control","no-store");self.send_header("Content-Length",str(len(payload)));self.end_headers();self.wfile.write(payload);return
         if self.path.split("?", 1)[0] == "/api/dashboard":
             payload = json.dumps(dashboard_data(), ensure_ascii=False, allow_nan=False).encode("utf-8")
             self.send_response(200); self.send_header("Content-Type", "application/json; charset=utf-8")
             self.send_header("Cache-Control", "no-store"); self.send_header("Content-Length", str(len(payload)))
             self.end_headers(); self.wfile.write(payload); return
         super().do_GET()
+
+    def do_POST(self):
+        if urlparse(self.path).path != "/api/validation":
+            self.send_error(404); return
+        try:
+            size=int(self.headers.get("Content-Length","0"))
+            if size<=0 or size>10000: raise ValueError("invalid request size")
+            row=append_observation(json.loads(self.rfile.read(size)))
+            payload=json.dumps({"saved":row,"metrics":metrics()},ensure_ascii=False).encode("utf-8");self.send_response(201)
+        except Exception as exc:
+            payload=json.dumps({"error":str(exc)},ensure_ascii=False).encode("utf-8");self.send_response(400)
+        self.send_header("Content-Type","application/json; charset=utf-8");self.send_header("Cache-Control","no-store");self.send_header("Content-Length",str(len(payload)));self.end_headers();self.wfile.write(payload)
 
     def log_message(self, format, *args):
         print(format % args)

@@ -1,7 +1,8 @@
 """Transparent observation-decision engine using live Open-Meteo data."""
 from __future__ import annotations
 from datetime import datetime, timezone
-import json, math, time
+from zoneinfo import ZoneInfo
+import json, math, time, subprocess, tempfile
 from pathlib import Path
 from urllib.parse import urlencode
 from urllib.request import urlopen
@@ -32,16 +33,29 @@ def _site_layer():
 def _fetch(base,params,key):
     path=CACHE/f'{key}.json'
     if path.exists() and time.time()-path.stat().st_mtime<3600:return json.loads(path.read_text(encoding='utf-8'))
-    with urlopen(base+'?'+urlencode(params),timeout=15) as r:data=json.load(r)
+    url=base+'?'+urlencode(params)
+    try:
+        with urlopen(url,timeout=15) as r:data=json.load(r)
+    except Exception:
+        # Some managed Windows environments block Python sockets while allowing
+        # the system TLS client. Arguments are passed without a shell.
+        with tempfile.NamedTemporaryFile(suffix='.json',delete=False) as tmp: tmp_path=Path(tmp.name)
+        try:
+            subprocess.run(['curl.exe','-sS','--fail','--max-time','20',url,'-o',str(tmp_path)],check=True)
+            data=json.loads(tmp_path.read_text(encoding='utf-8'))
+        finally:
+            tmp_path.unlink(missing_ok=True)
     path.write_text(json.dumps(data),encoding='utf-8');return data
 def _weather(site,days):
     common={'latitude':site['lat'],'longitude':site['lon'],'timezone':'Asia/Baghdad','forecast_days':days}
     w=_fetch('https://api.open-meteo.com/v1/forecast',{**common,'hourly':'cloud_cover_low,cloud_cover_mid,cloud_cover_high,relative_humidity_2m,wind_speed_10m'},f"w_{site['id']}_{days}")
     q=_fetch('https://air-quality-api.open-meteo.com/v1/air-quality',{**common,'hourly':'aerosol_optical_depth,dust'},f"q_{site['id']}_{days}")
     qi={t:i for i,t in enumerate(q['hourly']['time'])}; out=[]
+    now_local=datetime.now(ZoneInfo('Asia/Baghdad')).replace(minute=0,second=0,microsecond=0)
     for i,t in enumerate(w['hourly']['time']):
-        hour=int(t[11:13]);j=qi.get(t)
-        if j is None or not (18<=hour or hour<=5):continue
+        local_time=datetime.fromisoformat(t).replace(tzinfo=ZoneInfo('Asia/Baghdad'))
+        hour=local_time.hour;j=qi.get(t)
+        if local_time<now_local or j is None or not (18<=hour or hour<=5):continue
         vals={k:w['hourly'][k][i] for k in ('cloud_cover_low','cloud_cover_mid','cloud_cover_high','relative_humidity_2m','wind_speed_10m')}
         vals.update(aerosol_optical_depth=q['hourly']['aerosol_optical_depth'][j],dust=q['hourly']['dust'][j])
         if any(v is None for v in vals.values()):continue
