@@ -16,6 +16,14 @@ Challenge 1 now runs on authentic World Bank Space2Stats records derived from NA
 
 ## Run locally
 
+## تحديث مجموعة مصادر الويب
+
+```powershell
+python scrape_sources.py
+```
+
+توجد مخرجات JSON وCSV الموثقة في [`data/web_sources`](data/web_sources/README.md). يسجل الجامع الصفحات الديناميكية أو المحظورة بوضوح ولا يتجاوز `robots.txt`.
+
 ### تشغيل لوحة القرار خلال أقل من 3 دقائق
 
 ```powershell

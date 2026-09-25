@@ -1,0 +1,15 @@
+{
+  "generated_utc": "2026-09-25T08:10:14.962811+00:00",
+  "files": {
+    "sources.json": "69de11ec520207e5ba581b8c35869bc0826cfa963803af714a10a129eb89db82",
+    "sections.csv": "aad99f5fe366baa577ddac6e9792370404ef280003f668fa8152eaa1136eeb53",
+    "model_prompt.json": "06c8b4b790ec46aae30fc380a402c3ba838bc9a12684202d0149ca24a4074b72"
+  },
+  "source_status": {
+    "darksky_principles": "blocked_by_robots",
+    "nasa_nighttime_lights": "ok",
+    "globe_at_night": "ok",
+    "nasa_worldview": "metadata_only",
+    "nasa_black_marble": "ok"
+  }
+}

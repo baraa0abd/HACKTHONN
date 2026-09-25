@@ -6,5 +6,6 @@ __pycache__/
 Thumbs.db
 tmp/
 data/cache/
+data/web_sources/*.tmp
 .venv/
 venv/
