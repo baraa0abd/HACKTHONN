@@ -1,0 +1,32 @@
+{
+  "period": [
+    "2025-09-19",
+    "2026-09-18"
+  ],
+  "source": "Open-Meteo Historical Weather API (ERA5); latest repository Black Marble ADM2 layer",
+  "recommended": {
+    "nights": 365,
+    "mean_score": 0.8800393524283936,
+    "successful_night_rate": 0.9260273972602739,
+    "wasted_trip_rate": 0.00821917808219178
+  },
+  "naive_origin": {
+    "nights": 365,
+    "mean_score": 0.22453281029472813,
+    "successful_night_rate": 0.0,
+    "wasted_trip_rate": 1.0
+  },
+  "naive_nearest": {
+    "nights": 365,
+    "mean_score": 0.22499180572851804,
+    "successful_night_rate": 0.0,
+    "wasted_trip_rate": 1.0
+  },
+  "decision_gain_vs_origin": 0.6555065421336654,
+  "decision_gain_vs_nearest": 0.6550475466998755,
+  "limitations": [
+    "Historical AOD was unavailable in this backtest and is omitted",
+    "Static light layer uses latest year for all nights",
+    "Straight-line candidate radius; no road routing"
+  ]
+}

@@ -16,6 +16,21 @@ Challenge 1 now runs on authentic World Bank Space2Stats records derived from NA
 
 ## Run locally
 
+### تشغيل لوحة القرار خلال أقل من 3 دقائق
+
+```powershell
+cd dashboard
+.\run_dashboard.ps1
+```
+
+افتح `http://127.0.0.1:8902/#challenge1`، وانتقل إلى «خطط ليلة الرصد»، ثم اضغط «احسب القرار الحي». تحتاج التوصية الحية إلى الإنترنت؛ تبقى أحدث استجابات Open-Meteo مخزنة لمدة ساعة.
+
+اقرأ [تدقيق المستودع](AUDIT.md)، و[مصادر البيانات](DATA_SOURCES.md)، و[المنهج](METHODS.md)، و[دراسة حالة الموصل](CASE_STUDY.md)، و[سيناريو العرض](DEMO_SCRIPT.md).
+
+### Decision dashboard in under 3 minutes
+
+Run `dashboard/run_dashboard.ps1`, open `http://127.0.0.1:8902/#challenge1`, and use the observation planner. Live recommendations require internet access and never fabricate missing SQM calibration.
+
 On this Windows workspace:
 
 ```powershell
@@ -64,3 +79,5 @@ Verified run: **1,313 real records**, **101 Iraqi districts**, **2012–2024**, 
 - Before/after measurements with a control site before claiming intervention benefits.
 
 The supplied briefs do not specify the team size, competition deadline, judging weights, mandatory model, or submission format. The engineering choices and 48-hour plan in this package are proposals, not invented competition rules.
+
+

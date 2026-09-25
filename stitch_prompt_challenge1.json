@@ -1,0 +1,51 @@
+{
+  "tool": "Google Stitch",
+  "project_name": "Layl | ليل — Night Sky Observation Decision Dashboard",
+  "context": "ASI Hackathon Challenge 1: Light Pollution & Astronomical Observation Difficulty (التلوث الضوئي وصعوبة الرصد الفلكي). This is the real backend already built in this repo: NASA Black Marble radiance data (via World Bank Space2Stats) for 101 Iraqi districts 2012-2024, plus a live decision engine that scores 5 candidate observing sites near Mosul (Mosul, Bashiqa, Alqosh, Hammam Al-Alil, Hatra) against Open-Meteo cloud/aerosol/humidity/wind forecasts to output a GO / MARGINAL / NO-GO recommendation. The UI must visualize this real data, not a generic placeholder dashboard.",
+  "platform": "Responsive web app, desktop-first (1440px) with full mobile breakpoint (375px) support for field use at the observing site",
+  "language": {
+    "primary": "Arabic (RTL)",
+    "secondary": "English (LTR toggle in header)",
+    "note": "All UI copy in the prompts below is Arabic-first; mirror layout correctly for RTL (icons, chart legends, nav order)."
+  },
+  "design_style": {
+    "aesthetic": "Mission-control / scientific instrument panel meets clear night sky. Dark, calm, data-dense but legible — not playful.",
+    "color_palette": {
+      "background": "deep navy-indigo #0B1026 with a very subtle starfield texture",
+      "surface_cards": "#151B33 with soft 1px border #2A3358",
+      "primary_accent": "amber-gold #F2B84B (CTAs, highlights, 'tonight' focus)",
+      "go_status": "teal-cyan #3DD9C2",
+      "marginal_status": "amber #F2B84B",
+      "no_go_status": "coral-red #F16A5C",
+      "text_primary": "#F5F7FF",
+      "text_muted": "#8B93B8"
+    },
+    "typography": "Arabic-optimized sans-serif (e.g. Cairo or IBM Plex Sans Arabic) for UI text, paired with a monospace/tabular-numeral font for radiance values, coordinates and percentages",
+    "layout_density": "Compact data cards with generous spacing between sections; avoid clutter despite many metrics",
+    "iconography": "Line icons: moon phase, telescope, cloud, wind, dust/haze, chart-trend"
+  },
+  "data_model_reference": {
+    "note": "Ground the design in these real fields so Stitch renders believable content instead of Lorem Ipsum",
+    "candidate_sites": ["الموصل (نقطة الانطلاق)", "بعشيقة", "ألقوش", "حمام العليل", "الحضر"],
+    "site_fields": ["status: GO/MARGINAL/NO-GO", "score 0-1", "distance_km from origin", "best_hour tonight", "decision_gain_vs_origin", "penalty breakdown: السحب (clouds), الغبار والهباء (aerosol/dust), الرطوبة (humidity), الرياح (wind)"],
+    "district_fields": ["governorate", "district", "first_radiance (2012)", "latest_radiance (2024)", "change_percent", "log_radiance_slope_per_year", "latest_good_quality flag"],
+    "district_lists": ["dark_screening_candidates (best dark-sky districts)", "rapid_increase_watchlist (districts brightening fastest)"],
+    "trust_metrics": ["1,313 verified records", "101 Iraqi districts", "9/9 automated tests passed", "data source: NASA Black Marble via World Bank Space2Stats API"],
+    "known_limitation_to_surface_in_ui": "لا توجد معايرة SQM أرضية بعد — الإشعاع الفضائي مؤشر فرز أولي وليس قياس سطوع سماء معتمد (No ground SQM calibration yet — satellite radiance is a screening signal, not a certified sky-brightness measurement)."
+  },
+  "master_prompt": "Design 'Layl | ليل', an Arabic-first (RTL) dark-mode web dashboard that helps astronomy clubs and university teams in Iraq decide where and when to observe the night sky, built on real NASA Black Marble satellite radiance data and live weather forecasts. Deep navy night-sky theme (#0B1026) with a subtle starfield texture, teal/cyan for good dark-sky status, amber for marginal, coral-red for poor. Screens:\n- Home / Overview: hero header with mission statement 'قرارات رصد فلكي مبنية على بيانات حقيقية', trust badges (1,313 سجل موثّق، 101 قضاء عراقي، 9/9 اختبارات ناجحة، مصدر: NASA Black Marble عبر World Bank)، بطاقة كبيرة 'احصل على توصية الليلة' تقود لشاشة التوصية، وملخص سريع لأفضل وأسوأ المواقع حالياً.\n- Tonight's Recommendation (توصية الليلة): control panel at top with sliders/inputs for نطاق السفر بالكيلومتر (1-250كم)، عدد الليالي القادمة (1-7)، ونوع الرصد (عين مجردة / تلسكوب). Below it, ranked site cards for الموصل، بعشيقة، ألقوش، حمام العليل، الحضر — each card shows a large GO/MARGINAL/NO-GO status chip, a 0-1 score gauge, المسافة بالكيلومتر، أفضل ساعة الليلة، مقارنة الكسب مقابل البقاء في الموصل (decision_gain_vs_origin)، وتفصيل الأسباب كأشرطة صغيرة (السحب، الغبار والهباء، الرطوبة، الرياح). Include a horizontal hourly timeline strip per selected site showing GO/MARGINAL/NO-GO across the night hours.\n- District Light Pollution Explorer (خريطة ومقارنة الأقضية): searchable/sortable table plus map view of 101 Iraqi districts colored by radiance trend, with two highlighted side panels — 'مرشحو السماء المظلمة' (dark screening candidates) in teal and 'قائمة المراقبة: تزايد سريع في الإضاءة' (rapid increase watchlist) in coral-red, each row showing governorate, district, نسبة التغير change_percent, and a small sparkline of radiance 2012-2024.\n- District Detail: drill-down page for one district with a large line/area chart of annual radiance 2012-2024, first-vs-latest comparison stat cards, a data-quality badge (latest_good_quality), and contextual note if it is one of the 5 candidate observing sites.\n- Data & Methodology (الشفافية والمصادر): source manifest card (API resource, retrieval date, SHA-256 hash badge), plain-language explanation of the metric (NASA Black Marble annual mean radiance, nW/cm²/sr, gas-flare excluded), verification status (9/9 tests passed), and a clearly framed limitations list including the missing ground SQM calibration caveat.\n- Settings/About: language toggle (Arabic RTL / English LTR), data last-updated timestamp, offline-mode indicator, links to methodology docs.\nUse card-based layout, tabular-numeral monospace font for all data figures, Cairo/IBM Plex Sans Arabic for UI text, and traffic-light-style status chips throughout for instant scannability.",
+  "follow_up_prompts": [
+    "Refine the 'Tonight's Recommendation' site cards: make the GO/MARGINAL/NO-GO chip the dominant visual element top-left of each card, add a radial gauge (0-1) for the score, and show the four penalty reasons (clouds, dust/aerosol, humidity, wind) as horizontal mini-bars sorted by severity.",
+    "Add a comparison bar directly under the ranked site list showing 'الكسب مقابل البقاء في الموصل' (decision gain vs staying in Mosul) as a horizontal diverging bar chart, teal for positive gain, coral for negative.",
+    "On the District Explorer, add a toggle between table view and choropleth map view of Ninewa governorate districts, color-scaled from teal (dark/low radiance) to coral (bright/high radiance).",
+    "On the District Detail screen, add an annotated marker on the radiance trend chart at the 'latest_year' point with the change_percent badge floating next to it.",
+    "Design an empty/error state for when live weather data (Open-Meteo) is unreachable: show cached last-known recommendation with a clear 'بيانات غير محدثة' (stale data) amber banner instead of blocking the screen.",
+    "Design a mobile (375px) version of the Tonight's Recommendation screen: collapse controls into a bottom sheet, stack site cards vertically, keep the GO/MARGINAL/NO-GO chip and score gauge visible without scrolling."
+  ],
+  "success_criteria": [
+    "A judge can look at the Home screen and immediately understand this is a real-data decision tool, not a mockup, via the trust badges and source citation",
+    "The GO/MARGINAL/NO-GO status is legible at a glance across every screen that shows it",
+    "The District Explorer clearly separates 'good news' (dark screening candidates) from 'bad news' (rapid increase watchlist) using color and grouping, not just a flat table",
+    "RTL Arabic layout is correct throughout: nav, charts, icons, and reading order"
+  ]
+}
